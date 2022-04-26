@@ -179,13 +179,13 @@ limit 20;
 -- 7.
 -- Add an additional column day_type with values 'weekend' and 'workday' depending on the rental day of the week.
 select * , date_format(rental_date, '%M') as 'month',
-date_format(rental_date, '%W') AS 'weekday',
+date_format(rental_date, '%W') as 'weekday',
 case
 when date_format(rental_date, '%W') > 5 then 'weekend' else 'workday' end as day_type
 from sakila.rental;
 -- or
 select * , date_format(rental_date, '%M') as 'month',
-date_format(rental_date, '%W') AS 'weekday',
+date_format(rental_date, '%W') as 'weekday',
 case
 when date_format(rental_date, '%W') = 'Monday'='Tuesday'='Wednesday'='Thursday'='Friday' then 'weekend' else 'workday' end as day_type
 from sakila.rental;
@@ -193,5 +193,5 @@ from sakila.rental;
 -- 8.
 -- How many rentals were in the last month of activity?
 select max(rental_date) from sakila.rental;
-select count(rental_date), date_format(rental_date, '%M') as 'month' from sakila.rental
-where  date_format(rental_date, '%M') = 'February';
+select count(rental_date), date_format(rental_date, '%M') as 'month',  date_format(rental_date, '%Y') as 'year' from sakila.rental
+where  date_format(rental_date, '%M') = 'February' and date_format(rental_date, '%Y')=2006;
